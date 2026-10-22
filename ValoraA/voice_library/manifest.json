@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "my-studio-voice",
+    "display_name": "My Studio Voice",
+    "language": "en",
+    "added_at": "2026-08-31T13:11:18.770537+00:00",
+    "consent_confirmed": true,
+    "consent_text_shown": "I confirm that I have the right to use this voice recording.",
+    "duration_seconds": 31.91
+  }
+]

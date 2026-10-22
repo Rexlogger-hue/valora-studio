@@ -1,0 +1,58 @@
+# ====================================================================
+# VALORA AI — GITIGNORE CONFIGURATION
+# Prevents large models (>100MB) and virtual environments from breaking GitHub/Vercel
+# ====================================================================
+
+# Python Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+.env/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.cache/
+ValoraA/.cache/
+
+# Heavy Neural Weights & Models (>100MB exceeds GitHub push limit)
+models/
+ValoraA/models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Output audio files & temporary builds
+output/
+outputs/
+tmp/
+ValoraA/tmp/
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+
+# Logs & Runtime telemetry
+logs/
+ValoraA/logs/
+*.log
+
+# Environment variables & secrets
+.env
+.env.local
+.env.*.local
+
+# OS Artifacts
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Git artifacts
+*.orig

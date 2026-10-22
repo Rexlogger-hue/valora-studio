@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valora AI — Neural Voice Generation & Expressive AI Speech</title>
+  <meta name="description" content="Create natural, expressive AI voices from text and short audio samples with Valora AI. Experience state-of-the-art neural voice cloning, multi-emotion synthesis, and studio-grade audio directability." />
+  <meta name="keywords" content="Valora AI, AI Voice Generator, Text to Speech, Voice Cloning, Neural Audio, Speech Synthesis, Voice AI" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/valora-logo.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/valora-clean.css" />
+</head>
+<body>
+
+  <!-- ==================== HEADER / NAVIGATION ==================== -->
+  <header class="valora-navbar" id="main-nav">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#home" class="nav-logo" id="logo-link">
+        <div class="logo-mark" title="Valora AI">
+          <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="valora-arc-nav" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+            </defs>
+            <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+              <textPath href="#valora-arc-nav" startOffset="50%" text-anchor="middle">Valora</textPath>
+            </text>
+            <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+            <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+            <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+            <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+          </svg>
+        </div>
+        <span class="logo-text">Valora <span class="logo-accent">AI</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-menu" id="desktop-nav">
+        <a href="#home" class="nav-link active" data-page="home">Home</a>
+        <a href="#studio" class="nav-link" data-page="studio">Voice Studio</a>
+        <a href="#voices" class="nav-link" data-page="voices">Voice Library</a>
+        <a href="#introduction" class="nav-link" data-page="introduction">Introduction</a>
+        <a href="#pricing" class="nav-link" data-page="pricing">Pricing</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="nav-icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon theme-icon-dark"></i>
+          <i class="fa-solid fa-sun theme-icon-light" style="display:none;"></i>
+        </button>
+
+        <!-- Notification Bell -->
+        <div class="notification-wrapper">
+          <button class="nav-icon-btn" id="notif-toggle-btn" title="Notifications" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-badge" id="notif-badge">3</span>
+          </button>
+          <!-- Notification Dropdown Panel -->
+          <div class="notification-dropdown" id="notification-dropdown">
+            <div class="notif-header">
+              <div class="notif-title-row">
+                <h4>Notifications</h4>
+                <span class="notif-count-badge" id="notif-count-badge">3 new</span>
+              </div>
+              <div class="notif-actions-row">
+                <button class="notif-action-link" id="mark-all-read-btn">Mark all read</button>
+                <button class="notif-action-link text-muted" id="clear-all-notifs-btn">Clear</button>
+              </div>
+            </div>
+            <div class="notif-list" id="notif-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Auth Navigation Area (Dynamic) -->
+        <div class="nav-auth-area" id="nav-auth-container">
+          <!-- Populated by JS: Login/Signup buttons OR User Avatar dropdown -->
+        </div>
+
+        <!-- Create Voice CTA Button -->
+        <button class="btn btn-gradient btn-sm glow-btn nav-cta-btn" id="btn-quick-create">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Create Voice</span>
+        </button>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-nav-toggle" id="mobile-menu-btn" aria-label="Open Navigation Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-out Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <div class="nav-logo">
+        <div class="logo-mark" title="Valora AI">
+          <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="valora-arc-drawer" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+            </defs>
+            <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+              <textPath href="#valora-arc-drawer" startOffset="50%" text-anchor="middle">Valora</textPath>
+            </text>
+            <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+            <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+            <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+            <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+          </svg>
+        </div>
+        <span class="logo-text">Valora <span class="logo-accent">AI</span></span>
+      </div>
+      <button class="drawer-close" id="drawer-close-btn">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <nav class="drawer-nav">
+        <a href="#home" class="drawer-link active" data-page="home"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#studio" class="drawer-link" data-page="studio"><i class="fa-solid fa-microphone-lines"></i> Voice Studio</a>
+        <a href="#voices" class="drawer-link" data-page="voices"><i class="fa-solid fa-layer-group"></i> Voice Library</a>
+        <a href="#introduction" class="drawer-link" data-page="introduction"><i class="fa-solid fa-book-open"></i> Introduction</a>
+        <a href="#pricing" class="drawer-link" data-page="pricing"><i class="fa-solid fa-tags"></i> Pricing</a>
+        <a href="#profile" class="drawer-link" data-page="profile"><i class="fa-solid fa-user-circle"></i> Profile & Dashboard</a>
+      </nav>
+      <div class="drawer-footer" id="mobile-auth-drawer">
+        <!-- Auth buttons or profile summary in mobile -->
+      </div>
+    </div>
+  </div>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ==================== MAIN APPLICATION WRAPPER ==================== -->
+  <main class="valora-main" id="main-content">
+
+    <!-- ================================================================ -->
+    <!-- 1. PAGE: HOME / LANDING PAGE                                    -->
+    <!-- ================================================================ -->
+    <section class="page-section active" id="page-home">
+      
+      <!-- HERO SECTION -->
+      <section class="hero-section">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-container">
+          <div class="hero-grid">
+            
+            <!-- Left: Hero Copy -->
+            <div class="hero-content">
+              <div class="hero-badge animate-fade-in">
+                <span class="pulse-dot"></span>
+                <span class="badge-text">Next-Generation Neural Audio Diffusion 3.0</span>
+                <i class="fa-solid fa-sparkles text-cyan"></i>
+              </div>
+              
+              <h1 class="hero-title animate-slide-up">
+                Give every voice <br />
+                <span class="gradient-text">a presence.</span>
+              </h1>
+              
+              <p class="hero-subtext animate-slide-up delay-1">
+                Create natural, expressive AI voices from text and short audio samples with Valora AI. Experience human-like prosody, fine emotion directability, and instantaneous voice synthesis.
+              </p>
+              
+              <div class="hero-actions animate-slide-up delay-2">
+                <a href="#studio" class="btn btn-gradient btn-lg glow-btn">
+                  <i class="fa-solid fa-microphone-lines"></i>
+                  <span>Try Voice Studio</span>
+                </a>
+                <a href="#voices" class="btn btn-glass btn-lg">
+                  <i class="fa-solid fa-compass"></i>
+                  <span>Explore Voice Library</span>
+                </a>
+              </div>
+
+              <!-- Social Proof / Metrics strip -->
+              <div class="hero-stats-row animate-slide-up delay-3">
+                <div class="hero-stat-item">
+                  <span class="stat-num">48 kHz</span>
+                  <span class="stat-label">Lossless Master Audio</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat-item">
+                  <span class="stat-num">&lt; 180 ms</span>
+                  <span class="stat-label">Real-Time Latency</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat-item">
+                  <span class="stat-num">32+</span>
+                  <span class="stat-label">Languages & Dialects</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: 3D Visual & Interactive Core Canvas -->
+            <div class="hero-visual-col animate-fade-in delay-2">
+              <div class="hero-3d-wrapper">
+                
+                <!-- 3D Neural Voice Core Canvas -->
+                <canvas id="hero-3d-canvas" class="hero-canvas" width="460" height="420"></canvas>
+                
+                <!-- Floating Glass Voice Card (Interactive) -->
+                <div class="floating-voice-card card-3d-tilt" id="hero-floating-card">
+                  <div class="floating-card-header">
+                    <div class="avatar-circle-pulse">
+                      <div class="voice-emblem-badge grad-voice-indigo" style="width: 44px; height: 44px; border-radius: 50%;">
+                        <i class="fa-solid fa-microphone-lines voice-emblem-icon text-sm"></i>
+                        <div class="mini-equalizer"><span></span><span></span><span></span><span></span></div>
+                      </div>
+                      <span class="pulse-ring"></span>
+                    </div>
+                    <div class="floating-card-info">
+                      <div class="floating-voice-name">Aria Vance <span class="tag-accent-sm">Neural V3</span></div>
+                      <div class="floating-voice-type">Warm Narration &bull; American English</div>
+                    </div>
+                    <button class="voice-play-mini-btn" id="hero-aria-play-btn" title="Listen Sample">
+                      <i class="fa-solid fa-play"></i>
+                    </button>
+                  </div>
+
+                  <!-- Dynamic Live Waveform Bars -->
+                  <div class="floating-waveform-bars" id="hero-waveform-visualizer">
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                    <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                  </div>
+
+                  <div class="floating-card-footer">
+                    <span class="floating-emotion-tag"><i class="fa-solid fa-heart text-rose"></i> Warmth: 94%</span>
+                    <span class="floating-latency-tag"><i class="fa-solid fa-bolt text-cyan"></i> 142ms</span>
+                  </div>
+                </div>
+
+                <!-- Small Accompanying Badge 1 -->
+                <div class="floating-chip chip-top-left">
+                  <i class="fa-solid fa-waveform text-indigo"></i>
+                  <span>Zero-Shot Acoustic Cloning</span>
+                </div>
+
+                <!-- Small Accompanying Badge 2 -->
+                <div class="floating-chip chip-bottom-right">
+                  <i class="fa-solid fa-shield-halved text-cyan"></i>
+                  <span>Biometric Voice Watermarking</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED VOICE PREVIEWS SECTION -->
+      <section class="section-padding bg-surface-alt" id="featured-voices-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="section-badge"><i class="fa-solid fa-sparkles"></i> Curated Neural Talents</div>
+            <h2 class="section-title">Featured Voices Ready for Any Story</h2>
+            <p class="section-subtitle">Listen to studio-calibrated neural voice profiles with dynamic prosody and multi-lingual adaptability.</p>
+          </div>
+
+          <div class="featured-voices-grid" id="featured-voices-container">
+            <!-- Populated via JavaScript with top voices -->
+          </div>
+
+          <div class="text-center mt-8">
+            <a href="#voices" class="btn btn-outline btn-md">
+              <span>View All 12 Curated Voices in Library</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- VOICE CLONING EXPLANATION SECTION -->
+      <section class="section-padding" id="cloning-showcase-section">
+        <div class="container">
+          <div class="grid-2-col items-center">
+            <div class="showcase-content">
+              <div class="section-badge"><i class="fa-solid fa-fingerprint"></i> High-Fidelity Cloning</div>
+              <h2 class="section-title">Instant Zero-Shot Voice Cloning in 5 Seconds</h2>
+              <p class="text-muted leading-relaxed mb-6">
+                Capture the unique timbre, acoustic warmth, micro-pitch inflections, and cadences of any human voice using as little as 5 seconds of clean audio. No lengthy multi-hour training required.
+              </p>
+
+              <div class="feature-checklist">
+                <div class="check-item">
+                  <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                  <div>
+                    <strong>Preserved Natural Micro-Inflections</strong>
+                    <p class="text-xs text-muted">Retains breathing cues, natural vocal fry, and regional accent nuances.</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                  <div>
+                    <strong>Multi-Language Cross-Lingual Transfer</strong>
+                    <p class="text-xs text-muted">Speak fluently in Spanish, Japanese, German, or French in your own cloned timbre.</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                  <div>
+                    <strong>C2PA Cryptographic Watermarking</strong>
+                    <p class="text-xs text-muted">Every cloned synthesis embeds inaudible cryptographic provenance for ethical security.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <button class="btn btn-gradient btn-md" id="btn-open-clone-modal">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <span>Clone a Voice Now</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="showcase-card-panel">
+              <div class="glass-panel p-6 border-glow">
+                <div class="panel-header-row mb-4">
+                  <span class="badge-pill-cyan"><i class="fa-solid fa-circle-dot"></i> Reference Audio Input</span>
+                  <span class="text-xs text-muted">Acoustic Latent Embedding</span>
+                </div>
+
+                <div class="clone-sample-preview mb-4">
+                  <div class="sample-info-row">
+                    <div class="sample-avatar"><i class="fa-solid fa-user-voice"></i></div>
+                    <div>
+                      <div class="font-semibold text-sm">Speaker_Sample_Reference.wav</div>
+                      <div class="text-xs text-muted">5.2 seconds &bull; 48kHz WAV &bull; Clean Studio Mic</div>
+                    </div>
+                    <span class="badge-success-sm">Matched 99.4%</span>
+                  </div>
+                </div>
+
+                <div class="neural-arrow-connector">
+                  <i class="fa-solid fa-arrow-down-long text-cyan"></i>
+                  <span class="text-xs text-muted">Neural Flow Transformer & Latent Diffusion</span>
+                </div>
+
+                <div class="clone-output-preview mt-4">
+                  <div class="panel-header-row mb-2">
+                    <span class="badge-pill-indigo"><i class="fa-solid fa-sparkles"></i> Cloned Synthesis Result</span>
+                    <span class="text-xs text-cyan">Zero Latency Output</span>
+                  </div>
+                  <div class="output-waveform-box">
+                    <div class="waveform-anim-bars" id="clone-demo-wave">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <button class="btn-play-pill" id="demo-clone-play-btn">
+                      <i class="fa-solid fa-play"></i> <span>Play Cloned Audio</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EMOTION CONTROL PREVIEW SECTION -->
+      <section class="section-padding bg-surface-alt" id="emotion-control-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="section-badge"><i class="fa-solid fa-sliders"></i> Granular Directability</div>
+            <h2 class="section-title">Shape Emotion, Energy, and Delivery on the Fly</h2>
+            <p class="section-subtitle">Toggle between emotional delivery vectors in real time to suit high-octane trailers, warm bedtime stories, or calm meditation guides.</p>
+          </div>
+
+          <div class="emotion-interactive-box glass-panel p-8">
+            <div class="emotion-picker-row mb-6">
+              <button class="emotion-pill active" data-emotion="Neutral"><i class="fa-solid fa-circle"></i> Neutral Balanced</button>
+              <button class="emotion-pill" data-emotion="Warm"><i class="fa-solid fa-heart text-rose"></i> Warm & Empathetic</button>
+              <button class="emotion-pill" data-emotion="Dramatic"><i class="fa-solid fa-masks-theater text-indigo"></i> Dramatic & Cinematic</button>
+              <button class="emotion-pill" data-emotion="Excited"><i class="fa-solid fa-bolt text-yellow"></i> Energetic & Excited</button>
+              <button class="emotion-pill" data-emotion="Calm"><i class="fa-solid fa-spa text-emerald"></i> Calm & Serene</button>
+              <button class="emotion-pill" data-emotion="Authoritative"><i class="fa-solid fa-shield text-cyan"></i> Authoritative</button>
+            </div>
+
+            <div class="emotion-preview-quote">
+              <i class="fa-solid fa-quote-left text-muted quote-icon"></i>
+              <p class="quote-text" id="emotion-demo-quote">
+                "In the quiet stillness before the dawn, every idea has the power to reshape the world."
+              </p>
+            </div>
+
+            <div class="emotion-controls-footer">
+              <div class="emotion-intensity-bar">
+                <span class="text-xs text-muted">Emotion Exaggeration</span>
+                <input type="range" class="valora-slider" id="emotion-slider-preview" min="0" max="100" value="80" />
+                <span class="text-xs text-cyan font-mono" id="emotion-slider-val">80%</span>
+              </div>
+              <button class="btn btn-gradient btn-md" id="emotion-listen-btn">
+                <i class="fa-solid fa-play"></i>
+                <span>Hear in <span id="emotion-active-name">Neutral</span> Tone</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- USE CASES GRID -->
+      <section class="section-padding" id="use-cases-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <div class="section-badge"><i class="fa-solid fa-cubes"></i> Industry Applications</div>
+            <h2 class="section-title">Built for Creators, Studios, and Global Builders</h2>
+            <p class="section-subtitle">Scalable AI voice infrastructure tailored for every creative medium.</p>
+          </div>
+
+          <div class="use-cases-grid">
+            <div class="use-case-card card-3d-tilt">
+              <div class="use-case-icon icon-cyan"><i class="fa-solid fa-microphone-stand"></i></div>
+              <h3 class="use-case-title">Podcasting & Audiobooks</h3>
+              <p class="use-case-desc">Narrate long-form novels and episodic shows with chapter consistency and authentic breathing cadences.</p>
+              <span class="use-case-tag">Long-form Audio</span>
+            </div>
+
+            <div class="use-case-card card-3d-tilt">
+              <div class="use-case-icon icon-indigo"><i class="fa-solid fa-film"></i></div>
+              <h3 class="use-case-title">Cinematic Video & Dubbing</h3>
+              <p class="use-case-desc">Dub films, documentaries, and YouTube videos into 32+ languages while retaining original character timbre.</p>
+              <span class="use-case-tag">Cross-Lingual Dubbing</span>
+            </div>
+
+            <div class="use-case-card card-3d-tilt">
+              <div class="use-case-icon icon-violet"><i class="fa-solid fa-gamepad"></i></div>
+              <h3 class="use-case-title">Game Development & NPCs</h3>
+              <p class="use-case-desc">Generate dynamic dialogues, emotional NPC banter, and character voices on-demand with ultra-low latency.</p>
+              <span class="use-case-tag">Interactive Voice</span>
+            </div>
+
+            <div class="use-case-card card-3d-tilt">
+              <div class="use-case-icon icon-emerald"><i class="fa-solid fa-bullhorn"></i></div>
+              <h3 class="use-case-title">High-Converting Ad Campaigns</h3>
+              <p class="use-case-desc">Produce tailored commercial voiceovers for TikTok, Instagram Reels, TV, and radio ads in seconds.</p>
+              <span class="use-case-tag">Commercial Audio</span>
+            </div>
+
+            <div class="use-case-card card-3d-tilt">
+              <div class="use-case-icon icon-amber"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3 class="use-case-title">E-Learning & Corporate Training</h3>
+              <p class="use-case-desc">Deliver clear, engaging instructional audio that boosts comprehension and learner retention.</p>
+              <span class="use-case-tag">Education</span>
+            </div>
+
+            <div class="use-case-card card-3d-tilt">
+              <div class="use-case-icon icon-rose"><i class="fa-solid fa-robot"></i></div>
+              <h3 class="use-case-title">Intelligent Conversational Agents</h3>
+              <p class="use-case-desc">Power natural interactive customer support, voice assistants, and telehealth companions.</p>
+              <span class="use-case-tag">Conversational AI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CALL TO ACTION BANNER -->
+      <section class="section-padding">
+        <div class="container">
+          <div class="cta-banner-card glass-panel text-center">
+            <div class="cta-glow-bg"></div>
+            <h2 class="cta-title">Ready to bring your voice ideas to life?</h2>
+            <p class="cta-subtitle">Join thousands of creators and studios crafting lifelike voiceovers in minutes.</p>
+            <div class="cta-buttons-row">
+              <a href="#studio" class="btn btn-gradient btn-lg glow-btn">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Open Voice Studio</span>
+              </a>
+              <a href="#signup" class="btn btn-outline btn-lg">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Create Free Account</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 2. PAGE: VOICE STUDIO (CORE PRODUCT)                            -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-studio">
+      <div class="container studio-container">
+        
+        <div class="studio-header-bar">
+          <div>
+            <h1 class="page-title">Neural Voice Studio</h1>
+            <p class="page-subtitle">Type or paste text, select your voice & emotion, and generate ultra-high-fidelity neural audio.</p>
+          </div>
+          <div class="studio-quick-stats">
+            <span class="badge-pill-cyan"><i class="fa-solid fa-circle-check"></i> Synthesis Ready</span>
+            <button class="btn btn-outline btn-sm" id="studio-reset-btn" title="Reset All Fields">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="studio-layout-grid">
+          
+          <!-- Left: Script Input & Director Controls -->
+          <div class="studio-left-col">
+            
+            <!-- Text Input Card -->
+            <div class="glass-panel studio-card p-6">
+              <div class="card-header-between mb-3">
+                <label for="studio-text-input" class="studio-label">
+                  <i class="fa-solid fa-pen-nib text-cyan"></i> Voice Script & Prompt
+                </label>
+                <div class="text-length-indicator">
+                  <span id="studio-char-count">0</span> / 2,000 chars
+                </div>
+              </div>
+
+              <div class="textarea-wrapper">
+                <textarea id="studio-text-input" class="studio-textarea" rows="7" placeholder="Type or paste your narrative, commercial ad script, or dialogue here... (e.g. 'Welcome to Valora AI. Experience sound designed with human emotion and pristine clarity.')"></textarea>
+              </div>
+
+              <!-- Quick Templates -->
+              <div class="quick-script-templates mt-3">
+                <span class="text-xs text-muted">Try sample:</span>
+                <button class="template-chip" data-sample="hindi">Hindi Story</button>
+                <button class="template-chip" data-sample="narration">Cinematic Intro</button>
+                <button class="template-chip" data-sample="commercial">Tech Ad Promo</button>
+                <button class="template-chip" data-sample="meditation">Calm Breathing</button>
+                <button class="template-chip" data-sample="podcast">Podcast Teaser</button>
+              </div>
+            </div>
+
+            <!-- Voice & Emotion Configuration -->
+            <div class="glass-panel studio-card p-6 mt-5">
+              <h3 class="studio-card-title mb-4"><i class="fa-solid fa-sliders text-indigo"></i> Vocal Character & Emotion Directing</h3>
+
+              <!-- Voice Selector Dropdown with Active Voice Card -->
+              <div class="form-group mb-4">
+                <label class="studio-label mb-2">Select Active Voice Preset</label>
+                <select id="studio-voice-select" class="valora-select mb-3">
+                  <!-- Populated dynamically via JS -->
+                </select>
+                <div class="selected-voice-preview-box" id="studio-active-voice-preview">
+                  <div class="flex items-center gap-3">
+                    <div class="voice-emblem-badge grad-voice-indigo" id="studio-sel-emblem" style="width: 42px; height: 42px; border-radius: 12px;">
+                      <i class="fa-solid fa-microphone-lines voice-emblem-icon text-xs"></i>
+                      <div class="mini-equalizer"><span></span><span></span><span></span><span></span></div>
+                    </div>
+                    <div>
+                      <div class="font-bold text-sm text-white" id="studio-sel-name">Aria Vance</div>
+                      <div class="text-xs text-muted" id="studio-sel-meta">Warm Narration &bull; American &bull; Female</div>
+                    </div>
+                  </div>
+                  <button class="btn btn-outline btn-xs" id="studio-change-voice-btn">Browse Library</button>
+                </div>
+              </div>
+
+              <!-- Emotion Vector Chips -->
+              <div class="form-group mb-5">
+                <label class="studio-label mb-2">Emotional Tone Vector</label>
+                <div class="studio-emotion-chips" id="studio-emotion-container">
+                  <button class="emotion-select-chip active" data-emotion="Neutral">Neutral</button>
+                  <button class="emotion-select-chip" data-emotion="Warm">Warm</button>
+                  <button class="emotion-select-chip" data-emotion="Dramatic">Dramatic</button>
+                  <button class="emotion-select-chip" data-emotion="Energetic">Energetic</button>
+                  <button class="emotion-select-chip" data-emotion="Calm">Calm</button>
+                  <button class="emotion-select-chip" data-emotion="Authoritative">Authoritative</button>
+                  <button class="emotion-select-chip" data-emotion="Whispering">Whispering</button>
+                  <button class="emotion-select-chip" data-emotion="Cheerful">Cheerful</button>
+                </div>
+              </div>
+
+              <!-- Acoustic Sliders -->
+              <div class="studio-sliders-grid">
+                <div class="slider-box">
+                  <div class="slider-header">
+                    <span>Speed / Cadence</span>
+                    <span class="font-mono text-cyan" id="speed-val-display">1.0x</span>
+                  </div>
+                  <input type="range" class="valora-slider" id="studio-speed-slider" min="0.5" max="2.0" step="0.05" value="1.0" />
+                </div>
+
+                <div class="slider-box">
+                  <div class="slider-header">
+                    <span>Pitch Modulation</span>
+                    <span class="font-mono text-cyan" id="pitch-val-display">0 st</span>
+                  </div>
+                  <input type="range" class="valora-slider" id="studio-pitch-slider" min="-12" max="12" step="1" value="0" />
+                </div>
+
+                <div class="slider-box">
+                  <div class="slider-header">
+                    <span>Emotion Intensity</span>
+                    <span class="font-mono text-cyan" id="intensity-val-display">75%</span>
+                  </div>
+                  <input type="range" class="valora-slider" id="studio-intensity-slider" min="0" max="100" step="5" value="75" />
+                </div>
+
+                <div class="slider-box">
+                  <div class="slider-header">
+                    <span>Breath & Pauses</span>
+                    <span class="font-mono text-cyan" id="pause-val-display">Natural</span>
+                  </div>
+                  <input type="range" class="valora-slider" id="studio-pause-slider" min="0" max="2" step="1" value="1" />
+                </div>
+              </div>
+
+              <!-- Generate Button -->
+              <div class="mt-6">
+                <button class="btn btn-gradient btn-lg w-full glow-btn" id="btn-generate-speech">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  <span id="btn-gen-text">Generate Neural Speech</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Audio Master Player & Session History -->
+          <div class="studio-right-col">
+            
+            <!-- Master Audio Player Card -->
+            <div class="glass-panel studio-card p-6 player-card">
+              <div class="player-header mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="live-dot"></span>
+                  <h3 class="studio-card-title">Acoustic Master</h3>
+                </div>
+                <div class="audio-format-badge" id="player-format-badge">48kHz Lossless</div>
+              </div>
+
+              <!-- Waveform Visualizer Canvas -->
+              <div class="waveform-canvas-container" id="waveform-container">
+                <canvas id="studio-waveform-canvas" width="480" height="120"></canvas>
+                <div class="waveform-time-overlay">
+                  <span id="player-cur-time">0:00</span> / <span id="player-total-time">0:00</span>
+                </div>
+              </div>
+
+              <!-- Seekable Progress Bar -->
+              <div class="progress-bar-wrap mb-4">
+                <input type="range" class="audio-progress-slider" id="audio-progress-slider" min="0" max="100" value="0" />
+              </div>
+
+              <!-- Audio Player Controls -->
+              <div class="player-controls-row">
+                <button class="ctrl-btn-subtle" id="ctrl-rewind-5" title="Rewind 5s"><i class="fa-solid fa-rotate-left"></i></button>
+                <button class="ctrl-btn-play" id="studio-master-play-btn" title="Play / Pause">
+                  <i class="fa-solid fa-play" id="master-play-icon"></i>
+                </button>
+                <button class="ctrl-btn-subtle" id="ctrl-forward-5" title="Forward 5s"><i class="fa-solid fa-rotate-right"></i></button>
+              </div>
+
+              <!-- Action Bar: Download, Favorite, Copy -->
+              <div class="player-actions-row mt-5 pt-4 border-t">
+                <button class="btn btn-outline btn-sm" id="btn-download-audio" title="Download Audio File">
+                  <i class="fa-solid fa-download"></i> Download WAV
+                </button>
+                <button class="btn btn-outline btn-sm" id="btn-save-to-library" title="Save to Profile Saved Items">
+                  <i class="fa-regular fa-bookmark"></i> Save Take
+                </button>
+                <button class="btn btn-outline btn-sm" id="btn-copy-script" title="Copy Script">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Session History & Recent Takes -->
+            <div class="glass-panel studio-card p-6 mt-5">
+              <div class="card-header-between mb-3">
+                <h4 class="font-bold text-sm text-white"><i class="fa-solid fa-clock-rotate-left text-cyan"></i> Session Takes</h4>
+                <button class="text-xs text-muted hover-white" id="clear-session-history-btn">Clear</button>
+              </div>
+              <div class="session-takes-list" id="studio-session-takes">
+                <!-- Takes rendered dynamically or empty state -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 3. PAGE: VOICE LIBRARY (/voices)                                -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-voices">
+      <div class="container">
+        
+        <!-- Library Top Header -->
+        <div class="library-header text-center mb-8">
+          <div class="section-badge"><i class="fa-solid fa-layer-group"></i> Complete Neural Voice Library & Presets</div>
+          <h1 class="page-title">Valora AI Voice Library</h1>
+          <p class="section-subtitle">Browse, filter, preview, and select from our complete library of ultra-natural neural studio voice presets.</p>
+        </div>
+
+        <!-- Filter & Search Control Panel -->
+        <div class="glass-panel p-6 library-filter-panel mb-8">
+          
+          <!-- Top Row: Search & Dropdowns -->
+          <div class="library-filter-grid mb-5">
+            <!-- Search Input -->
+            <div class="search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input type="text" id="voice-search-input" class="valora-input pl-10" placeholder="Search by name, accent, tone, or style..." />
+              <button class="clear-search-btn" id="voice-search-clear" style="display:none;">&times;</button>
+            </div>
+
+            <!-- Language Filter -->
+            <div class="select-wrap">
+              <select id="filter-language" class="valora-select">
+                <option value="all">All Languages & Dialects (300+)</option>
+                <option value="English">English (US, UK, AU, IN, CA)</option>
+                <option value="Hindi">Hindi (India)</option>
+                <option value="Spanish">Spanish (ES, MX, US)</option>
+                <option value="French">French (FR, CA)</option>
+                <option value="German">German (Germany)</option>
+                <option value="Japanese">Japanese (Japan)</option>
+                <option value="Tamil">Tamil (India)</option>
+                <option value="Telugu">Telugu (India)</option>
+                <option value="Marathi">Marathi (India)</option>
+                <option value="Bengali">Bengali (India)</option>
+                <option value="Gujarati">Gujarati (India)</option>
+                <option value="Kannada">Kannada (India)</option>
+                <option value="Malayalam">Malayalam (India)</option>
+                <option value="Urdu">Urdu</option>
+                <option value="Punjabi">Punjabi</option>
+                <option value="Italian">Italian</option>
+                <option value="Portuguese">Portuguese (BR, PT)</option>
+                <option value="Chinese">Chinese (Mandarin, Cantonese)</option>
+                <option value="Korean">Korean</option>
+                <option value="Arabic">Arabic</option>
+              </select>
+            </div>
+
+            <!-- Gender Filter -->
+            <div class="select-wrap">
+              <select id="filter-gender" class="valora-select">
+                <option value="all">All Vocal Styles / Gender</option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Non-Binary">Non-Binary / Versatile</option>
+              </select>
+            </div>
+
+            <!-- Sort By -->
+            <div class="select-wrap">
+              <select id="filter-sort" class="valora-select">
+                <option value="popular">Sort: Most Popular</option>
+                <option value="name">Sort: Name (A-Z)</option>
+                <option value="fidelity">Sort: Highest Fidelity</option>
+                <option value="favorites">Sort: My Favorites</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Category Filter Tags Bar -->
+          <div class="category-tags-scroll" id="voice-category-filters">
+            <button class="cat-pill active" data-category="all">All Voices</button>
+            <button class="cat-pill" data-category="Hindi">Hindi & Indic AI Voices</button>
+            <button class="cat-pill" data-category="Warm Narration">Warm Narration</button>
+            <button class="cat-pill" data-category="Deep Cinematic">Deep Cinematic</button>
+            <button class="cat-pill" data-category="Clear Professional">Clear Professional</button>
+            <button class="cat-pill" data-category="Authoritative Documentary">Documentary & Explainer</button>
+            <button class="cat-pill" data-category="Friendly Conversational">Friendly Conversational</button>
+            <button class="cat-pill" data-category="Energetic Commercial">Commercial & Ads</button>
+            <button class="cat-pill" data-category="Calm Meditation">Meditation & Wellness</button>
+            <button class="cat-pill" data-category="Dramatic Storytelling">Storytelling & Gaming</button>
+            <button class="cat-pill" data-category="Young Character">Young Character</button>
+            <button class="cat-pill" data-category="Mature Character">Mature Character</button>
+            <button class="cat-pill" data-category="Podcast Host">Podcast & Broadcast</button>
+            <button class="cat-pill" data-category="Virtual Assistant">Virtual Assistant</button>
+            <button class="cat-pill" data-category="Polyglot Multilingual">Polyglot & Regional</button>
+          </div>
+
+        </div>
+
+        <!-- Voice Results Count & Quick Stats -->
+        <div class="library-results-bar mb-6">
+          <div class="text-sm text-muted">
+            Showing <span class="text-white font-bold" id="library-results-count">12</span> voices
+          </div>
+          <div class="library-view-toggles">
+            <button class="btn btn-outline btn-xs" id="filter-favs-quick-btn">
+              <i class="fa-solid fa-heart text-rose"></i> <span id="favs-btn-label">Show Favorites</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Voice Cards Grid -->
+        <div class="voice-library-grid" id="voice-library-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 4. PAGE: INTRODUCTION / HOW IT WORKS                            -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-introduction">
+      <div class="container intro-container">
+        
+        <div class="section-header text-center mb-10">
+          <div class="section-badge"><i class="fa-solid fa-book-open"></i> Technical Guide</div>
+          <h1 class="page-title">Introduction to Valora AI</h1>
+          <p class="section-subtitle">Learn how our neural audio platform transforms written words into emotionally rich, authentic human sound.</p>
+        </div>
+
+        <div class="intro-content-wrap glass-panel p-8 mb-10">
+          
+          <div class="intro-block mb-8">
+            <h3 class="text-xl font-bold text-white mb-3"><i class="fa-solid fa-brain text-cyan mr-2"></i> The Valora AI Philosophy</h3>
+            <p class="text-muted leading-relaxed">
+              Traditional speech synthesis often sounds robotic, flat, or unnaturally repetitive. At Valora AI, our goal is to bridge the gap between algorithmic speech and the warmth, emotion, and subtle imperfections of natural human communication.
+            </p>
+          </div>
+
+          <div class="intro-steps-grid mb-8">
+            <div class="intro-step-card">
+              <div class="step-num">01</div>
+              <h4 class="font-bold text-white mb-2">Text & Context Analysis</h4>
+              <p class="text-xs text-muted">The neural linguistic engine evaluates punctuation, context, sentiment, and semantic emphasis to determine optimal pacing and pitch curves.</p>
+            </div>
+
+            <div class="intro-step-card">
+              <div class="step-num">02</div>
+              <h4 class="font-bold text-white mb-2">Acoustic Latent Modeling</h4>
+              <p class="text-xs text-muted">The model aligns phonemes with selected speaker timbre embeddings, injecting requested emotional vectors (e.g. warmth, dramatic tension).</p>
+            </div>
+
+            <div class="intro-step-card">
+              <div class="step-num">03</div>
+              <h4 class="font-bold text-white mb-2">Continuous Diffusion Vocoding</h4>
+              <p class="text-xs text-muted">Our diffusion vocoder converts latent acoustic frames into master 48kHz audio waveforms in real time, embedding cryptographic safety watermarks.</p>
+            </div>
+          </div>
+
+          <div class="intro-block mb-8">
+            <h3 class="text-xl font-bold text-white mb-3"><i class="fa-solid fa-compass text-indigo mr-2"></i> Quick Start Workflow</h3>
+            <div class="workflow-steps-list">
+              <div class="workflow-step-item">
+                <span class="workflow-dot">1</span>
+                <div>
+                  <strong class="text-white">Explore the Voice Library:</strong> Browse through 12 curated voice talents, filter by accent or use case, and preview sample lines.
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-dot">2</span>
+                <div>
+                  <strong class="text-white">Open the Voice Studio:</strong> Enter your script, select an emotional style, and calibrate speed and pitch controls.
+                </div>
+              </div>
+              <div class="workflow-step-item">
+                <span class="workflow-dot">3</span>
+                <div>
+                  <strong class="text-white">Generate & Export:</strong> Click generate to synthesize audio in under a second. Listen on the waveform visualizer and download broadcast WAV takes.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center pt-4">
+            <a href="#studio" class="btn btn-gradient btn-md glow-btn">
+              <i class="fa-solid fa-play"></i> Get Started in Voice Studio
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6. PAGE: PRICING                                                -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-pricing">
+      <div class="container">
+        
+        <div class="section-header text-center mb-8">
+          <div class="section-badge"><i class="fa-solid fa-tags"></i> Transparent Plans</div>
+          <h1 class="page-title">Simple, Predictable Pricing</h1>
+          <p class="section-subtitle">Start for free and scale as your audio production and voice cloning needs grow.</p>
+          
+          <!-- Billing Cycle Switch -->
+          <div class="billing-switch-wrapper mt-6">
+            <span class="billing-label active" id="label-monthly">Monthly</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="pricing-billing-toggle" />
+              <span class="slider-round"></span>
+            </label>
+            <span class="billing-label" id="label-yearly">Yearly <span class="badge-save">Save 20%</span></span>
+          </div>
+        </div>
+
+        <!-- Pricing Cards Grid -->
+        <div class="pricing-cards-grid mb-12">
+          
+          <!-- Tier 1: Free Starter -->
+          <div class="pricing-card glass-panel card-3d-tilt">
+            <div class="pricing-card-header">
+              <h3 class="plan-name">Free Starter</h3>
+              <p class="plan-desc">For hobbyists and creators testing neural voices.</p>
+              <div class="plan-price-row">
+                <span class="price-currency">$</span>
+                <span class="price-number">0</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check text-cyan"></i> 10,000 characters / month</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Access to all 12 curated voices</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Standard MP3 audio downloads</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> 8 basic emotion presets</li>
+              <li class="disabled"><i class="fa-solid fa-xmark text-muted"></i> Custom Voice Cloning</li>
+              <li class="disabled"><i class="fa-solid fa-xmark text-muted"></i> Commercial usage rights</li>
+            </ul>
+            <div class="pricing-card-footer">
+              <a href="#signup" class="btn btn-outline w-full">Start Free</a>
+            </div>
+          </div>
+
+          <!-- Tier 2: Creator Pro (Featured) -->
+          <div class="pricing-card glass-panel featured card-3d-tilt">
+            <div class="popular-ribbon">Most Popular</div>
+            <div class="pricing-card-header">
+              <h3 class="plan-name">Creator Pro</h3>
+              <p class="plan-desc">For podcasters, YouTubers, and commercial studios.</p>
+              <div class="plan-price-row">
+                <span class="price-currency">$</span>
+                <span class="price-number" id="price-creator">29</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check text-cyan"></i> <strong>250,000 characters</strong> / month</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> <strong>3 Instant Voice Clones</strong></li>
+              <li><i class="fa-solid fa-check text-cyan"></i> 48kHz Master Lossless WAV export</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Full commercial license</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Fine emotion intensity sliders</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Priority neural render queue</li>
+            </ul>
+            <div class="pricing-card-footer">
+              <a href="#signup" class="btn btn-gradient w-full glow-btn">Get Started with Pro</a>
+            </div>
+          </div>
+
+          <!-- Tier 3: Studio Scale -->
+          <div class="pricing-card glass-panel card-3d-tilt">
+            <div class="pricing-card-header">
+              <h3 class="plan-name">Studio Scale</h3>
+              <p class="plan-desc">For high-volume production agencies & game studios.</p>
+              <div class="plan-price-row">
+                <span class="price-currency">$</span>
+                <span class="price-number" id="price-studio">89</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fa-solid fa-check text-cyan"></i> <strong>1,000,000 characters</strong> / month</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> <strong>15 Custom Voice Clones</strong></li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Unlimited 48kHz WAV downloads</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Full commercial & broadcast rights</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Multi-seat team workspace</li>
+              <li><i class="fa-solid fa-check text-cyan"></i> Dedicated audio engineering support</li>
+            </ul>
+            <div class="pricing-card-footer">
+              <a href="#signup" class="btn btn-outline w-full">Choose Studio Scale</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="pricing-faq max-w-3xl mx-auto">
+          <h3 class="text-xl font-bold text-center text-white mb-6">Frequently Asked Questions</h3>
+          
+          <div class="faq-accordion" id="pricing-faq-list">
+            <div class="faq-item glass-panel">
+              <button class="faq-question">
+                <span>Can I use the generated audio commercially?</span>
+                <i class="fa-solid fa-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Yes! Audio generated on Creator Pro and Studio Scale plans includes 100% royalty-free commercial usage rights for podcasts, audiobooks, YouTube videos, games, ads, and broadcast media.</p>
+              </div>
+            </div>
+
+            <div class="faq-item glass-panel">
+              <button class="faq-question">
+                <span>How does Voice Cloning work?</span>
+                <i class="fa-solid fa-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Upload a clean 5 to 30-second audio sample of the voice. Our neural latent encoder extracts acoustic fingerprints to recreate the voice across all supported languages and emotions in seconds.</p>
+              </div>
+            </div>
+
+            <div class="faq-item glass-panel">
+              <button class="faq-question">
+                <span>Can I cancel or upgrade my subscription anytime?</span>
+                <i class="fa-solid fa-chevron-down faq-chevron"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Yes, you can upgrade, downgrade, or cancel your subscription at any time directly from your user dashboard with zero lock-in or cancellation fees.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7. PAGE: USER PROFILE & DASHBOARD (PROTECTED)                   -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-profile">
+      <div class="container profile-container">
+        
+        <!-- Profile Top Banner / Header -->
+        <div class="glass-panel profile-banner-card mb-6">
+          <div class="profile-header-flex">
+            
+            <div class="profile-avatar-block">
+              <div class="avatar-wrapper-lg" id="prof-avatar-wrapper" style="cursor:pointer;" title="Click to change avatar photo">
+                <img src="" id="prof-avatar-img" class="avatar-img-lg" alt="User Avatar" style="display:none;" />
+                <div id="prof-avatar-placeholder" class="avatar-placeholder-lg">AR</div>
+                <input type="file" id="prof-avatar-file-input" accept="image/png, image/jpeg, image/webp, image/gif, image/svg+xml" style="display:none;" />
+                <button class="avatar-edit-badge" id="prof-change-avatar-btn" type="button" title="Upload Custom Profile Picture">
+                  <i class="fa-solid fa-camera"></i>
+                </button>
+              </div>
+              <div class="profile-identity">
+                <div class="profile-name-row">
+                  <h2 class="profile-user-name" id="prof-display-name">Authenticated User</h2>
+                  <span class="badge-plan" id="prof-plan-badge">Free Tier</span>
+                </div>
+                <div class="profile-email-row" id="prof-display-email">user@valora.ai</div>
+                <div class="profile-bio-row text-xs text-muted mt-1" id="prof-display-bio">AI Voice Creator</div>
+                <div class="profile-joined-row text-xs text-muted" id="prof-member-since">Member since March 2026</div>
+              </div>
+            </div>
+
+            <div class="profile-actions-block">
+              <button class="btn btn-outline btn-sm" id="btn-open-edit-profile">
+                <i class="fa-solid fa-user-pen"></i> Edit Profile
+              </button>
+              <button class="btn btn-subtle-danger btn-sm" id="btn-profile-logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Profile Dashboard Grid -->
+        <div class="profile-dashboard-grid">
+          
+          <!-- Left Col: Usage & Plan Details -->
+          <div class="profile-col-left">
+            
+            <!-- Plan & Subscription Details -->
+            <div class="glass-panel p-6 mb-6">
+              <div class="card-header-between mb-4">
+                <h3 class="font-bold text-sm text-white"><i class="fa-solid fa-gem text-indigo mr-2"></i> Current Subscription</h3>
+                <a href="#pricing" class="btn btn-outline btn-xs">Upgrade</a>
+              </div>
+
+              <div class="subscription-overview-box">
+                <div class="sub-row">
+                  <span class="text-muted text-sm">Plan Tier:</span>
+                  <span class="font-bold text-white text-sm" id="prof-sub-tier">Free Starter Plan</span>
+                </div>
+                <div class="sub-row">
+                  <span class="text-muted text-sm">Status:</span>
+                  <span class="badge-success-sm" id="prof-sub-status">Active</span>
+                </div>
+                <div class="sub-row">
+                  <span class="text-muted text-sm">Renewal Date:</span>
+                  <span class="text-sm text-white" id="prof-sub-renewal">Monthly (Auto)</span>
+                </div>
+              </div>
+
+              <!-- Usage Progress Bar -->
+              <div class="usage-meter-box mt-5 pt-4 border-t">
+                <div class="card-header-between mb-2">
+                  <span class="text-xs text-muted">Monthly Character Usage</span>
+                  <span class="text-xs font-mono text-cyan" id="prof-usage-text">0 / 10,000</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="prof-usage-bar" style="width: 0%;"></div>
+                </div>
+                <div class="text-xs text-muted mt-2">
+                  Resets on the 1st of each calendar month.
+                </div>
+              </div>
+            </div>
+
+            <!-- Account Preferences & Security -->
+            <div class="glass-panel p-6">
+              <h3 class="font-bold text-sm text-white mb-4"><i class="fa-solid fa-gear text-cyan mr-2"></i> Account Preferences</h3>
+              
+              <div class="pref-toggle-row">
+                <div>
+                  <div class="text-sm font-semibold text-white">Audio Watermark Metadata</div>
+                  <div class="text-xs text-muted">Embed C2PA cryptographic authenticity tags.</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="pref-watermark" checked />
+                  <span class="slider-round"></span>
+                </label>
+              </div>
+
+              <div class="pref-toggle-row">
+                <div>
+                  <div class="text-sm font-semibold text-white">Email Generation Reports</div>
+                  <div class="text-xs text-muted">Receive monthly synthesis usage summaries.</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="pref-email-reports" />
+                  <span class="slider-round"></span>
+                </label>
+              </div>
+
+              <div class="pref-toggle-row">
+                <div>
+                  <div class="text-sm font-semibold text-white">Dark Mode Interface</div>
+                  <div class="text-xs text-muted">Switch between dark obsidian and bright theme.</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="pref-dark-theme" checked />
+                  <span class="slider-round"></span>
+                </label>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Right Col: Saved Voices & Generated Takes (With Clean Empty States) -->
+          <div class="profile-col-right">
+            
+            <!-- Saved Voices Panel -->
+            <div class="glass-panel p-6 mb-6">
+              <div class="card-header-between mb-4">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-heart text-rose"></i>
+                  <h3 class="font-bold text-sm text-white">Saved & Favorite Voices</h3>
+                </div>
+                <a href="#voices" class="text-xs text-cyan hover-underline">Browse Library &rarr;</a>
+              </div>
+
+              <!-- Container for saved voices or clean empty state -->
+              <div class="saved-voices-list" id="prof-saved-voices-container">
+                <!-- Populated dynamically via JS -->
+              </div>
+            </div>
+
+            <!-- Recent Generated Audio Takes -->
+            <div class="glass-panel p-6">
+              <div class="card-header-between mb-4">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-waveform-lines text-indigo"></i>
+                  <h3 class="font-bold text-sm text-white">Recent Generated Takes</h3>
+                </div>
+                <a href="#studio" class="text-xs text-cyan hover-underline">Go to Studio &rarr;</a>
+              </div>
+
+              <!-- Container for audio takes or clean empty state -->
+              <div class="recent-audio-list" id="prof-recent-audio-container">
+                <!-- Populated dynamically via JS -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 8. PAGE: AUTHENTICATION - LOGIN                                 -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-login">
+      <div class="container auth-container">
+        <div class="auth-card glass-panel card-3d-tilt">
+          
+          <div class="auth-header text-center mb-6">
+            <div class="auth-logo-badge mb-3">
+              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+                <defs>
+                  <path id="valora-arc-login" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+                </defs>
+                <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+                  <textPath href="#valora-arc-login" startOffset="50%" text-anchor="middle">Valora</textPath>
+                </text>
+                <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+                <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+                <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+              </svg>
+            </div>
+            <h2 class="auth-title">Welcome to Valora AI</h2>
+            <p class="auth-subtitle">Sign in to access your Voice Studio, saved presets, and neural clones.</p>
+          </div>
+
+          <form id="form-login" class="auth-form">
+            <!-- Email Field -->
+            <div class="form-group mb-4">
+              <label for="login-email" class="form-label">Email Address</label>
+              <div class="input-icon-wrap">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" id="login-email" class="valora-input" placeholder="name@example.com" required autocomplete="email" />
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group mb-3">
+              <div class="flex justify-between items-center mb-1">
+                <label for="login-password" class="form-label mb-0">Password</label>
+                <a href="#forgot-password" class="text-xs text-cyan hover-underline">Forgot password?</a>
+              </div>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-key input-icon"></i>
+                <input type="password" id="login-password" class="valora-input" placeholder="Enter your password" required autocomplete="current-password" />
+                <button type="button" class="pwd-toggle-btn" id="toggle-login-pwd" title="Show/Hide Password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember Me Checkbox -->
+            <div class="form-group mb-5 flex items-center gap-2">
+              <input type="checkbox" id="login-remember" class="valora-checkbox" checked />
+              <label for="login-remember" class="text-xs text-muted cursor-pointer">Remember me on this browser</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-gradient btn-lg w-full glow-btn" id="btn-submit-login">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              <span>Sign In</span>
+            </button>
+          </form>
+
+          <!-- Quick Guest Access Button -->
+          <div class="mt-3">
+            <button type="button" class="btn btn-outline btn-sm w-full" id="btn-guest-login" title="Quick Demo Mode without password">
+              <i class="fa-solid fa-bolt text-amber mr-1"></i> Quick Demo / Guest Access
+            </button>
+          </div>
+
+          <!-- OAuth / Social Login Separator -->
+          <div class="auth-divider my-5">
+            <span>or sign in with</span>
+          </div>
+
+          <!-- OAuth Providers -->
+          <div class="oauth-buttons-row mb-6">
+            <button class="btn-oauth" id="oauth-google-btn" title="Sign in with Google">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+              <span>Google</span>
+            </button>
+            <button class="btn-oauth" id="oauth-github-btn" title="Sign in with GitHub">
+              <i class="fa-brands fa-github text-white"></i>
+              <span>GitHub</span>
+            </button>
+          </div>
+
+          <!-- Switch to Signup -->
+          <div class="auth-footer-text text-center text-xs text-muted">
+            Don't have an account yet?
+            <a href="#signup" class="text-cyan font-semibold hover-underline">Create an account</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 9. PAGE: AUTHENTICATION - SIGN UP                               -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-signup">
+      <div class="container auth-container">
+        <div class="auth-card glass-panel card-3d-tilt">
+          
+          <div class="auth-header text-center mb-6">
+            <div class="auth-logo-badge mb-3">
+              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+                <defs>
+                  <path id="valora-arc-signup" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+                </defs>
+                <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+                  <textPath href="#valora-arc-signup" startOffset="50%" text-anchor="middle">Valora</textPath>
+                </text>
+                <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+                <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+                <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+              </svg>
+            </div>
+            <h2 class="auth-title">Create Valora AI Account</h2>
+            <p class="auth-subtitle">Join for free and receive 10,000 complimentary characters every month.</p>
+          </div>
+
+          <form id="form-signup" class="auth-form">
+            <!-- Full Name -->
+            <div class="form-group mb-4">
+              <label for="signup-name" class="form-label">Full Name</label>
+              <div class="input-icon-wrap">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="signup-name" class="valora-input" placeholder="Elena Vance" required autocomplete="name" />
+              </div>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group mb-4">
+              <label for="signup-email" class="form-label">Work or Personal Email</label>
+              <div class="input-icon-wrap">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" id="signup-email" class="valora-input" placeholder="elena@example.com" required autocomplete="email" />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-4">
+              <label for="signup-password" class="form-label">Create Password</label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-key input-icon"></i>
+                <input type="password" id="signup-password" class="valora-input" placeholder="Minimum 6 characters" required minlength="6" autocomplete="new-password" />
+                <button type="button" class="pwd-toggle-btn" id="toggle-signup-pwd" title="Show/Hide Password">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Terms Agreement -->
+            <div class="form-group mb-5 flex items-start gap-2">
+              <input type="checkbox" id="signup-terms" class="valora-checkbox mt-1" checked required />
+              <label for="signup-terms" class="text-xs text-muted cursor-pointer leading-tight">
+                I agree to the <a href="#introduction" class="text-cyan hover-underline">Terms of Service</a> and confirm ethical use of AI voice synthesis.
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-gradient btn-lg w-full glow-btn" id="btn-submit-signup">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Create Free Account</span>
+            </button>
+          </form>
+
+          <div class="auth-divider my-5">
+            <span>or sign up with</span>
+          </div>
+
+          <div class="oauth-buttons-row mb-6">
+            <button class="btn-oauth" id="oauth-signup-google-btn" title="Sign up with Google">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+              <span>Google</span>
+            </button>
+            <button class="btn-oauth" id="oauth-signup-github-btn" title="Sign up with GitHub">
+              <i class="fa-brands fa-github text-white"></i>
+              <span>GitHub</span>
+            </button>
+          </div>
+
+          <div class="auth-footer-text text-center text-xs text-muted">
+            Already have an account?
+            <a href="#login" class="text-cyan font-semibold hover-underline">Sign In</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 10. PAGE: AUTHENTICATION - FORGOT PASSWORD                      -->
+    <!-- ================================================================ -->
+    <section class="page-section" id="page-forgot-password">
+      <div class="container auth-container">
+        <div class="auth-card glass-panel card-3d-tilt">
+          
+          <div class="auth-header text-center mb-6">
+            <div class="auth-logo-badge mb-3">
+              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+                <defs>
+                  <path id="valora-arc-forgot" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+                </defs>
+                <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+                  <textPath href="#valora-arc-forgot" startOffset="50%" text-anchor="middle">Valora</textPath>
+                </text>
+                <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+                <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+                <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+              </svg>
+            </div>
+            <h2 class="auth-title">Reset Password</h2>
+            <p class="auth-subtitle">Enter your registered email address and we will send you a secure password reset link.</p>
+          </div>
+
+          <form id="form-forgot-pwd" class="auth-form">
+            <div class="form-group mb-5">
+              <label for="forgot-email" class="form-label">Email Address</label>
+              <div class="input-icon-wrap">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" id="forgot-email" class="valora-input" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gradient btn-lg w-full glow-btn" id="btn-submit-forgot">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Send Reset Link</span>
+            </button>
+          </form>
+
+          <div class="text-center mt-6">
+            <a href="#login" class="text-xs text-cyan hover-underline flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-left"></i> Return to Sign In
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="valora-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <div class="nav-logo mb-3">
+            <div class="logo-mark" title="Valora AI">
+              <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <path id="valora-arc-footer" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+                </defs>
+                <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+                  <textPath href="#valora-arc-footer" startOffset="50%" text-anchor="middle">Valora</textPath>
+                </text>
+                <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+                <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+                <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+              </svg>
+            </div>
+            <span class="logo-text">Valora <span class="logo-accent">AI</span></span>
+          </div>
+          <p class="footer-brand-desc">
+            Give every voice a presence. Next-generation neural audio diffusion, zero-shot voice cloning, and directable prosody for creators worldwide.
+          </p>
+          <div class="footer-social-links mt-4">
+            <a href="#" class="social-icon-btn" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Links Col 1: Product -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Product</h4>
+          <ul class="footer-nav">
+            <li><a href="#studio">Voice Studio</a></li>
+            <li><a href="#voices">Voice Library</a></li>
+            <li><a href="#pricing">Pricing Plans</a></li>
+            <li><a href="#page-home" id="footer-clone-trigger">Voice Cloning</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 2: Resources -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-nav">
+            <li><a href="#introduction">Introduction & Workflow</a></li>
+            <li><a href="#introduction">Acoustic Specs</a></li>
+            <li><a href="#pricing">Frequently Asked Questions</a></li>
+            <li><a href="#page-home">Ethical AI Charter</a></li>
+            <li><a href="#page-home">Safety & Watermarking</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 3: Company & Trust -->
+        <div class="footer-links-col">
+          <h4 class="footer-col-title">Security & Trust</h4>
+          <ul class="footer-nav">
+            <li><a href="#introduction">Privacy Policy</a></li>
+            <li><a href="#introduction">Terms of Service</a></li>
+            <li><a href="#introduction">C2PA Provenance</a></li>
+            <li><a href="#introduction">Security Whitepaper</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div class="text-xs text-muted">
+          &copy; 2026 Valora AI, Inc. All rights reserved. Designed for next-generation speech synthesis.
+        </div>
+        <div class="footer-status-pill">
+          <span class="live-dot"></span>
+          <span>All Neural Systems Operational (48kHz Diffusion V3)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. VOICE DETAIL VIEW MODAL -->
+  <div class="modal-backdrop" id="modal-voice-detail">
+    <div class="modal-card modal-card-lg glass-panel">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div class="modal-avatar-wrap">
+            <div class="voice-emblem-badge grad-voice-indigo" id="modal-detail-emblem" style="width: 54px; height: 54px; border-radius: 15px;">
+              <i class="fa-solid fa-microphone-lines voice-emblem-icon" style="font-size: 1.4rem;"></i>
+              <div class="mini-equalizer"><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div>
+            <h3 class="modal-title" id="modal-detail-name">Voice Name</h3>
+            <div class="text-xs text-cyan" id="modal-detail-category">Category</div>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="close-detail-modal-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="voice-detail-meta-grid mb-4">
+          <div class="meta-item">
+            <span class="meta-label">Gender / Style</span>
+            <span class="meta-val" id="modal-detail-gender">Female</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Accent</span>
+            <span class="meta-val" id="modal-detail-accent">American English</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Acoustic Tone</span>
+            <span class="meta-val" id="modal-detail-tone">Warm & Resonant</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Sample Rate</span>
+            <span class="meta-val font-mono text-cyan">48 kHz Lossless</span>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <h4 class="text-xs font-bold uppercase text-muted mb-2">Voice Biography & Acoustic Profile</h4>
+          <p class="text-sm text-muted leading-relaxed" id="modal-detail-bio">
+            Voice description details...
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <h4 class="text-xs font-bold uppercase text-muted mb-2">Recommended Use Cases</h4>
+          <div class="flex flex-wrap gap-2" id="modal-detail-usecases">
+            <!-- Rendered tags -->
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <h4 class="text-xs font-bold uppercase text-muted mb-2">Supported Emotion Vectors</h4>
+          <div class="flex flex-wrap gap-2" id="modal-detail-emotions">
+            <!-- Emotion pills -->
+          </div>
+        </div>
+
+        <!-- Sample Waveform Box & Preview -->
+        <div class="sample-waveform-preview-box p-4 glass-panel mb-4">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs text-white font-semibold">Audition Line Sample</span>
+            <span class="text-xs text-muted">Neural Voice Engine</span>
+          </div>
+          <div class="waveform-anim-bars mb-3" id="modal-detail-bars">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <button class="btn btn-outline btn-sm w-full" id="modal-detail-audition-btn">
+            <i class="fa-solid fa-play"></i> <span>Play Audition Sample</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" id="modal-detail-fav-btn">
+          <i class="fa-regular fa-heart"></i> Favorite
+        </button>
+        <button class="btn btn-gradient btn-md glow-btn" id="modal-detail-use-btn">
+          <i class="fa-solid fa-microphone-lines"></i> Open in Voice Studio
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. INSTANT VOICE CLONING MODAL -->
+  <div class="modal-backdrop" id="modal-clone-voice">
+    <div class="modal-card modal-card-md glass-panel">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-fingerprint text-cyan text-lg"></i>
+          <h3 class="modal-title">Zero-Shot Voice Cloning</h3>
+        </div>
+        <button class="modal-close-btn" id="close-clone-modal-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="text-xs text-muted mb-4">
+          Upload 5 to 30 seconds of clean speech or record with your microphone. Our neural latent encoder will extract acoustic timbre in seconds.
+        </p>
+
+        <!-- Dropzone Area -->
+        <div class="upload-dropzone" id="clone-dropzone">
+          <input type="file" id="clone-file-input" accept="audio/*" style="display:none;" />
+          <div class="dropzone-content">
+            <i class="fa-solid fa-cloud-arrow-up text-3xl text-cyan mb-2"></i>
+            <div class="font-bold text-sm text-white mb-1">Drag & drop your voice sample here</div>
+            <div class="text-xs text-muted mb-3">WAV, MP3, M4A, or FLAC up to 25MB</div>
+            <button class="btn btn-outline btn-xs" id="btn-browse-audio">Browse Local Audio</button>
+          </div>
+        </div>
+
+        <div class="clone-settings-form mt-4">
+          <div class="form-group mb-3">
+            <label class="form-label text-xs">Cloned Voice Name</label>
+            <input type="text" id="clone-voice-name" class="valora-input" placeholder="e.g. My Studio Voice Clone" />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label text-xs">Primary Language & Accent</label>
+            <select id="clone-voice-lang" class="valora-select">
+              <option value="English (US)">English (US)</option>
+              <option value="English (UK)">English (UK)</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Japanese">Japanese</option>
+            </select>
+          </div>
+          <div class="form-group flex items-start gap-2">
+            <input type="checkbox" id="clone-consent-check" class="valora-checkbox mt-1" />
+            <label for="clone-consent-check" class="text-xs text-muted cursor-pointer">
+              I have full permission to synthesize this voice in compliance with ethical AI guidelines.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" id="btn-cancel-clone">Cancel</button>
+        <button class="btn btn-gradient btn-md glow-btn" id="btn-submit-clone">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Synthesize Neural Clone
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. EDIT PROFILE MODAL -->
+  <div class="modal-backdrop" id="modal-edit-profile">
+    <div class="modal-card modal-card-md glass-panel">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-user-gear text-indigo text-lg"></i>
+          <h3 class="modal-title">Edit Profile & Account</h3>
+        </div>
+        <button class="modal-close-btn" id="close-edit-prof-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Avatar Upload Section -->
+        <div class="edit-prof-avatar-section mb-4 p-3 glass-panel flex items-center gap-4">
+          <div class="avatar-wrapper-lg">
+            <img src="" id="edit-modal-avatar-preview" class="avatar-img-lg" alt="Avatar Preview" style="display:none;" />
+            <div id="edit-modal-avatar-placeholder" class="avatar-placeholder-lg">AR</div>
+          </div>
+          <div class="flex-1">
+            <div class="text-xs font-bold text-white mb-1">Profile Photo</div>
+            <div class="text-xs text-muted mb-2">Upload JPG, PNG, WEBP, or SVG image (up to 10MB)</div>
+            <div class="flex gap-2">
+              <input type="file" id="edit-prof-file-input" accept="image/png, image/jpeg, image/webp, image/gif, image/svg+xml" style="display:none;" />
+              <button type="button" class="btn btn-outline btn-xs" id="btn-browse-avatar">
+                <i class="fa-solid fa-cloud-arrow-up mr-1 text-cyan"></i> Browse Image
+              </button>
+              <button type="button" class="btn btn-subtle-danger btn-xs" id="btn-remove-avatar" style="display:none;">
+                <i class="fa-solid fa-trash mr-1"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label text-xs">Display Name</label>
+          <input type="text" id="edit-prof-name" class="valora-input" placeholder="Your Name" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label text-xs">Bio / Role</label>
+          <input type="text" id="edit-prof-bio" class="valora-input" placeholder="e.g. Lead Audio Director & Neural Sound Designer" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label text-xs">Avatar Image URL (or upload image above)</label>
+          <input type="url" id="edit-prof-avatar" class="valora-input" placeholder="https://... or /uploads/avatars/..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" id="btn-cancel-edit-prof">Cancel</button>
+        <button class="btn btn-gradient btn-sm glow-btn" id="btn-save-edit-prof">
+          <i class="fa-solid fa-floppy-disk mr-1"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. CONFIRM LOGOUT MODAL -->
+  <div class="modal-backdrop" id="modal-signout">
+    <div class="modal-card modal-card-sm glass-panel text-center">
+      <div class="modal-header justify-center border-0 pb-0">
+        <div class="auth-logo-badge mb-2">
+          <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+            <defs>
+              <path id="valora-arc-logout" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+            </defs>
+            <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+              <textPath href="#valora-arc-logout" startOffset="50%" text-anchor="middle">Valora</textPath>
+            </text>
+            <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" />
+            <rect x="37.5" y="56" width="25" height="3" rx="1.5" />
+            <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+            <rect x="47.5" y="78" width="5" height="17" rx="0.6" />
+          </svg>
+        </div>
+      </div>
+      <div class="modal-body pt-0">
+        <h3 class="modal-title mb-2">Sign out of Valora AI?</h3>
+        <p class="text-xs text-muted">You will be redirected to the login page. Your saved session takes will remain preserved.</p>
+      </div>
+      <div class="modal-footer justify-center">
+        <button class="btn btn-outline btn-sm" id="btn-cancel-logout">Cancel</button>
+        <button class="btn btn-subtle-danger btn-sm" id="btn-confirm-logout">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CORE JAVASCRIPT ==================== -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="js/valora-app.js"></script>
+</body>
+</html>

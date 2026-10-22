@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Arched Valora Text -->
+  <defs>
+    <path id="valora-arc" d="M 16 36 A 36 28 0 0 1 84 36" fill="none" />
+  </defs>
+  <text font-family="'Times New Roman', 'Baskerville', 'Playfair Display', Georgia, serif" font-size="15" font-weight="700" letter-spacing="1.1" fill="currentColor">
+    <textPath href="#valora-arc" startOffset="50%" text-anchor="middle">Valora</textPath>
+  </text>
+  
+  <!-- Microphone Capsule Body -->
+  <path d="M 40 48 C 40 42.5 44.5 38 50 38 C 55.5 38 60 42.5 60 48 L 60 62 C 60 67.5 55.5 72 50 72 C 44.5 72 40 67.5 40 62 Z" fill="currentColor" />
+  
+  <!-- Horizontal Grille Pivot Bar -->
+  <rect x="37.5" y="56" width="25" height="3" rx="1.5" fill="currentColor" />
+  
+  <!-- U-Shaped Metal Cradle Yoke -->
+  <path d="M 38.5 57.5 C 38.5 74 43.5 78 50 78 C 56.5 78 61.5 74 61.5 57.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+  
+  <!-- Vertical Stand Stem -->
+  <rect x="47.5" y="78" width="5" height="17" rx="0.6" fill="currentColor" />
+</svg>

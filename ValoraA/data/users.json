@@ -1,0 +1,119 @@
+{
+  "alex.rivera@valora.ai": {
+    "id": "usr_alex_001",
+    "name": "Alex Rivera",
+    "email": "alex.rivera@valora.ai",
+    "passwordHash": "a3fb15d075e7b74c5e29a8a4c4eda358757c468535dc633489ac957875f343d1",
+    "salt": "857832bb2dff87c5d60dc53afdfa767c",
+    "token": "tok_af54269cbd24debbc97d16b3df45383c6565cfcaa072c8707d2b3969",
+    "avatar": "",
+    "bio": "Lead Audio Director & Neural Sound Designer",
+    "plan": "Studio Pro Tier",
+    "charsUsed": 1420,
+    "charsLimit": 50000,
+    "memberSince": "March 2026",
+    "savedVoices": [
+      "v2/en_speaker_6",
+      "v2/hi_speaker_0",
+      "v2/es_speaker_0"
+    ],
+    "recentAudio": [],
+    "createdAt": 1790405172
+  },
+  "elena.vance@valora.ai": {
+    "id": "usr_elena_002",
+    "name": "Elena Vance",
+    "email": "elena.vance@valora.ai",
+    "passwordHash": "55f6bf3b2bc6ff3a24070f24b766d7a486bb1eed3c8dfc02fbebca28c5780e92",
+    "salt": "5cfec1b14c71ed7baf3f4fab4cf36ee5",
+    "token": "tok_3178fa9af47a53b5501f23a903082dd290e7cc1b36b15491",
+    "avatar": "",
+    "bio": "Podcast Producer & Narrative Storyteller",
+    "plan": "Enterprise Creator",
+    "charsUsed": 840,
+    "charsLimit": 100000,
+    "memberSince": "January 2026",
+    "savedVoices": [
+      "v2/en_speaker_6",
+      "v2/en_speaker_1"
+    ],
+    "recentAudio": [],
+    "createdAt": 1790405172
+  },
+  "demo@valora.ai": {
+    "id": "usr_demo_003",
+    "name": "Valora Creator",
+    "email": "demo@valora.ai",
+    "passwordHash": "2cff6b9d203e1b5e914c49aa7ad69173695ee8cc18c07b79c2525e08b8511dc2",
+    "salt": "172beedee04dc065b1c81dd8d9a6456e",
+    "token": "tok_e7b26579e181a2e09d921b4e05396b184a4a982da55fe56428284826",
+    "avatar": "",
+    "bio": "AI Voice Enthusiast & Content Creator",
+    "plan": "Free Starter Plan",
+    "charsUsed": 250,
+    "charsLimit": 10000,
+    "memberSince": "March 2026",
+    "savedVoices": [
+      "v2/en_speaker_6"
+    ],
+    "recentAudio": [],
+    "createdAt": 1790405172
+  },
+  "creator.test@valora.ai": {
+    "id": "usr_ac024a196654",
+    "name": "Audio Master Pro",
+    "email": "creator.test@valora.ai",
+    "passwordHash": "1eeaf4ddac1aaabfa6ea9abfaa82a5dae7e0c20fe9e7112003cd30a017e0e7be",
+    "salt": "a927c674590c96c0fbaac19dabee24d5",
+    "token": "",
+    "avatar": "/uploads/avatars/avatar_2997cc22fb52.png",
+    "bio": "Neural Sound Designer & Director",
+    "plan": "Free Starter Plan",
+    "charsUsed": 0,
+    "charsLimit": 10000,
+    "memberSince": "September 2026",
+    "savedVoices": [
+      "v2/en_speaker_6"
+    ],
+    "recentAudio": [],
+    "createdAt": 1790405649
+  },
+  "test.creator@valora.ai": {
+    "id": "usr_a9ecfb7e17c5",
+    "name": "Test Creator Updated",
+    "email": "test.creator@valora.ai",
+    "passwordHash": "3cb395e358c6a47a8e6a0a6be1a491c87f80fb76ea18814935cf237e41f98e7a",
+    "salt": "33ee778aff68395916cc3abf27fa906a",
+    "token": "",
+    "avatar": "/uploads/avatars/avatar_d30b4056966a.png",
+    "bio": "Expert Neural Audio Creator & Voice Artist",
+    "plan": "Free Starter Plan",
+    "charsUsed": 0,
+    "charsLimit": 10000,
+    "memberSince": "September 2026",
+    "savedVoices": [
+      "v2/en_speaker_6"
+    ],
+    "recentAudio": [],
+    "createdAt": 1790409378
+  },
+  "auditor@valora.ai": {
+    "id": "usr_f358fe7565d0",
+    "name": "Valora Auditor",
+    "email": "auditor@valora.ai",
+    "passwordHash": "3712db32bb10b28717dbb2513fc2a71243de5425aafa885b183d6810c06dc8b8",
+    "salt": "7d735860156821661bf971094fe58be5",
+    "token": "tok_b60115b7964d54a49b0a5d7c2c1943eaf67739f482adad563fbec430",
+    "avatar": "/uploads/avatars/avatar_84566b33c65e.png",
+    "bio": "Valora AI Voice Creator",
+    "plan": "Free Starter Plan",
+    "charsUsed": 0,
+    "charsLimit": 10000,
+    "memberSince": "September 2026",
+    "savedVoices": [
+      "v2/en_speaker_6"
+    ],
+    "recentAudio": [],
+    "createdAt": 1790409444
+  }
+}
