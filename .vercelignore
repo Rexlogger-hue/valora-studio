@@ -1,0 +1,12 @@
+# ====================================================================
+# VALORA AI — VERCEL IGNORE CONFIGURATION
+# Excludes local Python runners and heavy packages from Vercel build
+# ====================================================================
+
+ValoraA/
+*.py
+requirements.txt
+*.bat
+download_model.py
+test_indic_tts.py
+test_torch.py
