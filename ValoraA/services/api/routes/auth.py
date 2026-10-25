@@ -31,18 +31,18 @@ router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
 # File storage path for users database
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+WORKSPACE_ROOT = Path(__file__).resolve().parents[4] if len(Path(__file__).resolve().parents) > 4 else BASE_DIR
 DATA_DIR = BASE_DIR / "data"
 USERS_FILE = DATA_DIR / "users.json"
 
 STATIC_DIR = BASE_DIR / "services" / "api" / "static"
 UPLOAD_AVATARS_DIR = STATIC_DIR / "uploads" / "avatars"
 
-# Ensure data & avatar directories exist
+# Ensure data & avatar directories exist across all candidate locations
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 UPLOAD_AVATARS_DIR.mkdir(parents=True, exist_ok=True)
-
-# Also ensure root uploads directory exists if separate
 (BASE_DIR / "uploads" / "avatars").mkdir(parents=True, exist_ok=True)
+(WORKSPACE_ROOT / "uploads" / "avatars").mkdir(parents=True, exist_ok=True)
 
 
 def _hash_password(password: str, salt: Optional[str] = None) -> tuple[str, str]:
@@ -572,11 +572,17 @@ async def upload_avatar(
     with open(target_path, "wb") as f:
         f.write(contents)
 
-    # Also replicate to root uploads directory if exists
-    root_target = BASE_DIR / "uploads" / "avatars" / unique_name
-    root_target.parent.mkdir(parents=True, exist_ok=True)
-    with open(root_target, "wb") as f:
-        f.write(contents)
+    # Replicate to root and workspace uploads directories
+    for destination in [
+        BASE_DIR / "uploads" / "avatars" / unique_name,
+        WORKSPACE_ROOT / "uploads" / "avatars" / unique_name,
+    ]:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with open(destination, "wb") as f:
+                f.write(contents)
+        except Exception as e:
+            logger.warning("Could not sync avatar to %s: %s", destination, e)
 
     # Static URL path served by FastAPI
     avatar_url = f"/uploads/avatars/{unique_name}"

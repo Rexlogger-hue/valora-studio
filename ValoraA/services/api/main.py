@@ -334,16 +334,22 @@ async def rate_limit_exceeded_handler(
     )
 
 
-STATIC_DIR = Path(__file__).resolve().parent / "static"
+_root_workspace = Path(__file__).resolve().parents[3]
+STATIC_DIR = _root_workspace if (_root_workspace / "index.html").exists() else (Path(__file__).resolve().parent / "static")
 
 
 @app.get("/", tags=["General"])
 @app.get("/studio", tags=["General"])
+@app.get("/enhancer", tags=["General"])
+@app.get("/enhance", tags=["General"])
+@app.get("/translator", tags=["General"])
+@app.get("/translate", tags=["General"])
 @app.get("/introduction", tags=["General"])
 @app.get("/features", tags=["General"])
 @app.get("/pricing", tags=["General"])
 @app.get("/profile", tags=["General"])
 @app.get("/voices-ui", tags=["General"])
+@app.get("/indic-tts", tags=["General"])
 async def read_root():
     """
     Root endpoint serving the interactive Valora AI Web Studio & platform.
@@ -424,11 +430,39 @@ from services.api.routes import tts as tts_routes  # noqa: E402
 from services.api.routes import stt as stt_routes  # noqa: E402
 from services.api.routes import clone as clone_routes  # noqa: E402
 from services.api.routes import auth as auth_routes  # noqa: E402
+from services.api.routes import enhancer as enhancer_routes  # noqa: E402
+from services.api.routes import translator as translator_routes  # noqa: E402
+from services.api.routes import indic_tts as indic_tts_routes  # noqa: E402
 
 app.include_router(tts_routes.router)
 app.include_router(stt_routes.router)
 app.include_router(clone_routes.router)
 app.include_router(auth_routes.router)
+app.include_router(enhancer_routes.router)
+app.include_router(translator_routes.router)
+app.include_router(translator_routes.router, prefix="/api")
+app.include_router(indic_tts_routes.router)
+app.include_router(indic_tts_routes.router, prefix="/api")
+
+# Indic-TTS aliases
+app.add_api_route("/indic-tts/synthesize", indic_tts_routes.synthesize_speech, methods=["POST"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/api/indic-tts/synthesize", indic_tts_routes.synthesize_speech, methods=["POST"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/indic-tts/speakers", indic_tts_routes.list_speakers, methods=["GET"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/api/indic-tts/speakers", indic_tts_routes.list_speakers, methods=["GET"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/indic-tts/status", indic_tts_routes.get_status, methods=["GET"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/api/indic-tts/status", indic_tts_routes.get_status, methods=["GET"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/indic-tts/process-text", indic_tts_routes.process_text, methods=["POST"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+app.add_api_route("/api/indic-tts/process-text", indic_tts_routes.process_text, methods=["POST"], tags=["AI4Bharat Indic-Parler-TTS"], include_in_schema=False)
+
+# Aliases for direct root path and /api prefix calls
+app.add_api_route("/translate", translator_routes.translate_text, methods=["POST"], tags=["Live Translator"], include_in_schema=False)
+app.add_api_route("/api/translate", translator_routes.translate_text, methods=["POST"], tags=["Live Translator"], include_in_schema=False)
+app.add_api_route("/translator/languages", translator_routes.get_supported_languages, methods=["GET"], tags=["Live Translator"], include_in_schema=False)
+
+app.add_api_route("/enhance", enhancer_routes.process_audio, methods=["POST"], tags=["Voice Enhancement"], include_in_schema=False)
+app.add_api_route("/enhance/process", enhancer_routes.process_audio, methods=["POST"], tags=["Voice Enhancement"], include_in_schema=False)
+app.add_api_route("/api/enhance", enhancer_routes.process_audio, methods=["POST"], tags=["Voice Enhancement"], include_in_schema=False)
+app.add_api_route("/enhance/presets", enhancer_routes.get_presets, methods=["GET"], tags=["Voice Enhancement"], include_in_schema=False)
 
 # Comprehensive aliases for direct root path and /api prefix calls from external frontends
 app.add_api_route("/voices", tts_routes.list_voices, methods=["GET"], tags=["TTS"], include_in_schema=False)
@@ -464,6 +498,19 @@ if (STATIC_DIR / "js").exists():
 
 if (STATIC_DIR / "assets").exists():
     app.mount("/assets", StaticFiles(directory=str(STATIC_DIR / "assets")), name="assets")
+
+@app.get("/uploads/{file_path:path}", include_in_schema=False)
+async def serve_upload_file(file_path: str):
+    candidates = [
+        UPLOAD_DIR / file_path,
+        _root_workspace / "uploads" / file_path,
+        Path(__file__).resolve().parent.parent.parent / "uploads" / file_path,
+        Path(__file__).resolve().parent / "static" / "uploads" / file_path,
+    ]
+    for c in candidates:
+        if c.exists() and c.is_file():
+            return FileResponse(c)
+    raise StarletteHTTPException(status_code=404, detail="File not found")
 
 if UPLOAD_DIR.exists():
     app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")

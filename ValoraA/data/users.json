@@ -115,5 +115,24 @@
     ],
     "recentAudio": [],
     "createdAt": 1790409444
+  },
+  "shauryasingh8015@gmail.com": {
+    "id": "usr_google_0b4c36a2a7fa",
+    "name": "Shaurya Singh Rajput",
+    "email": "shauryasingh8015@gmail.com",
+    "passwordHash": "",
+    "salt": "",
+    "token": "tok_2a5fbe6126106fb8554d4847cc84b2cd9938deb4b4a7f3a4fe4faade",
+    "avatar": "/uploads/avatars/avatar_d0ac3c73de64.png",
+    "bio": "Valora AI Voice Creator",
+    "plan": "Free Starter Plan",
+    "charsUsed": 0,
+    "charsLimit": 10000,
+    "memberSince": "October 2026",
+    "savedVoices": [
+      "v2/en_speaker_6"
+    ],
+    "recentAudio": [],
+    "createdAt": 1792740367
   }
 }

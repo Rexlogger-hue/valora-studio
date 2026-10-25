@@ -56,3 +56,6 @@ Desktop.ini
 
 # Git artifacts
 *.orig
+
+# Scratch test files
+scratch/
